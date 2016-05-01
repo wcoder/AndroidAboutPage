@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AboutPageSamples", "AboutPageSamples.csproj", "{82F2D7C6-8C6F-4DF3-9E4B-74D4D7C773A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidAboutPage", "..\..\src\AndroidAboutPage\AndroidAboutPage.csproj", "{67A732E7-6C3E-449E-B6A0-46ADD923DA9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidAboutPage", "..\src\AndroidAboutPage.csproj", "{67A732E7-6C3E-449E-B6A0-46ADD923DA9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

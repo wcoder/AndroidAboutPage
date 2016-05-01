@@ -91,7 +91,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AndroidAboutPage\AndroidAboutPage.csproj">
+    <ProjectReference Include="..\src\AndroidAboutPage.csproj">
       <Project>{67a732e7-6c3e-449e-b6a0-46add923da9e}</Project>
       <Name>AndroidAboutPage</Name>
     </ProjectReference>
