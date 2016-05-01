@@ -2,6 +2,8 @@
 
 Port of [android-about-page](https://github.com/medyo/android-about-page) for Xamarin.Android
 
+---
+
 Create an awesome About Page for your Android App in 2 minutes
 
 ![Android About Page Cover](https://raw.githubusercontent.com/medyo/android-about-page/master/resources/cover.png)
