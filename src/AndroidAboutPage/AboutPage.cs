@@ -5,6 +5,11 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Content;
 using Android.Content.PM;
+using Android.Graphics.Drawables;
+using Android.Support.Graphics.Drawable;
+using Android.Support.V4.Content;
+using Android.Support.V4.Graphics.Drawable;
+using Android.Util;
 using Orientation = Android.Widget.Orientation;
 using Uri = Android.Net.Uri;
 
@@ -19,8 +24,8 @@ namespace AndroidAboutPage
 		private readonly Context _mContext;
 		private readonly LayoutInflater _mInflater;
 		private string _mDescription;
-		private int _mImage = 0;
-		private bool _mIsRTL = false;
+		private int _mImage;
+		private bool _mIsRTL;
 		private Typeface _mCustomFont;
 		private readonly View _mView;
 
@@ -52,9 +57,9 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_contact_us),
 				Icon = Resource.Drawable.about_icon_email,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color),
 				Intent = intent
 			};
-			//emailElement.setColor(ContextCompat.getColor(mContext, R.color.about_item_icon_color));
 
 			AddItem(emailElement);
 			return this;
@@ -104,10 +109,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_facebook),
 				Icon = Resource.Drawable.about_icon_facebook,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.facebook_color),
 				Intent = intent,
 				Value = id
 			};
-			//facebookElement.setColor(ContextCompat.getColor(mContext, R.color.facebook_color));
 
 			AddItem(facebookElement);
 			return this;
@@ -138,10 +143,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_twitter),
 				Icon = Resource.Drawable.about_icon_twitter,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.twitter_color),
 				Intent = intent,
 				Value = id
 			};
-			//twitterElement.setColor(ContextCompat.getColor(mContext, R.color.twitter_color));
 			
 			AddItem(twitterElement);
 			return this;
@@ -161,10 +166,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_play_store),
 				Icon = Resource.Drawable.about_icon_google_play,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.play_store_color),
 				Intent = goToMarket,
 				Value = id
 			};
-			//playStoreElement.setColor(ContextCompat.getColor(mContext, R.color.play_store_color));
 
 			AddItem(playStoreElement);
 			return this;
@@ -190,10 +195,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_youtube),
 				Icon = Resource.Drawable.about_icon_youtube,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.youtube_color),
 				Intent = intent,
 				Value = id
 			};
-			//youtubeElement.setColor(ContextCompat.getColor(mContext, R.color.youtube_color));
 
 			AddItem(youtubeElement);
 			return this;
@@ -219,10 +224,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_instagram),
 				Icon = Resource.Drawable.about_icon_instagram,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.instagram_color),
 				Intent = intent,
 				Value = id
 			};
-			//instagramElement.setColor(ContextCompat.getColor(mContext, R.color.instagram_color));
 
 			AddItem(instagramElement);
 			return this;
@@ -244,10 +249,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_github),
 				Icon = Resource.Drawable.about_icon_github,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.github_color),
 				Intent = intent,
 				Value = id
 			};
-			//gitHubElement.setColor(ContextCompat.getColor(_mContext, R.color.github_color));
 
 			AddItem(gitHubElement);
 			return this;
@@ -272,10 +277,10 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_website),
 				Icon = Resource.Drawable.about_icon_link,
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color),
 				Intent = browserIntent,
 				Value = url
 			};
-			//websiteElement.setColor(ContextCompat.getColor(_mContext, R.color.about_item_icon_color));
 
 			AddItem(websiteElement);
 			return this;
@@ -397,9 +402,9 @@ namespace AndroidAboutPage
 				};
 			}
 
-			//TypedValue outValue = new TypedValue();
-			//_mContext.Theme.ResolveAttribute(Resource.Attribute.selectableItemBackground, outValue, true);
-			//wrapper.SetBackgroundResource(outValue.ResourceId);
+			TypedValue outValue = new TypedValue();
+			_mContext.Theme.ResolveAttribute(Android.Resource.Attribute.SelectableItemBackground, outValue, true);
+			wrapper.SetBackgroundResource(outValue.ResourceId);
 
 			int padding = _mContext.Resources.GetDimensionPixelSize(Resource.Dimension.about_text_padding);
 			wrapper.SetPadding(padding, padding, padding, padding);
@@ -437,25 +442,25 @@ namespace AndroidAboutPage
 
 				if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
 				{
-					//Drawable drawable = VectorDrawableCompat.create(iconView.getResources(), element.getIcon(), iconView.getContext().getTheme());
-					//iconView.setImageDrawable(drawable);
+					var drawable = VectorDrawableCompat.Create(iconView.Resources, element.Icon, iconView.Context.Theme);
+					iconView.SetImageDrawable(drawable);
 				}
 				else
 				{
 					iconView.SetImageResource(element.Icon);
 				}
 
-				//Drawable wrappedDrawable = DrawableCompat.wrap(iconView.getDrawable());
-				//wrappedDrawable = wrappedDrawable.mutate();
+				Drawable wrappedDrawable = DrawableCompat.Wrap(iconView.Drawable);
+				wrappedDrawable = wrappedDrawable.Mutate();
 
-				//if (element.Color != null)
-				//{
-				//	DrawableCompat.setTint(wrappedDrawable, element.getColor());
-				//}
-				//else
-				//{
-				//	DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(mContext, R.color.about_item_icon_color));
-				//}
+				if (element.Color != 0)
+				{
+					DrawableCompat.SetTint(wrappedDrawable, element.Color);
+				}
+				else
+				{
+					DrawableCompat.SetTint(wrappedDrawable, ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color));
+				}
 			}
 			else
 			{
