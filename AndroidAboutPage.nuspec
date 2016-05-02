@@ -1,0 +1,25 @@
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata>
+    <id>AndroidAboutPage</id>
+    <version>0.0.1</version>
+    <title>About Page for Xamarin Android</title>
+    <authors>Yauheni Pakala</authors>
+    <owners>Yauheni Pakala</owners>
+     <licenseUrl>https://github.com/wcoder/AndroidAboutPage/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/wcoder/AndroidAboutPage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Create an awesome About Page for your Android App in 2 minutes</description>
+    <tags>xamarin android monodroid xamarin.android about page</tags>
+    <dependencies>
+      <group targetFramework="MonoAndroid">
+        <dependency id="Xamarin.Android.Support.v4" version="23.3.0" />
+        <dependency id="Xamarin.Android.Support.v7.AppCompat" version="23.3.0" />
+        <dependency id="Xamarin.Android.Support.Vector.Drawable" version="23.3.0"/>
+        <dependency id="Xamarin.Android.Support.Animated.Vector.Drawable" version="23.3.0"/>
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="src\bin\Release\AndroidAboutPage.dll" target="lib\MonoAndroid\AndroidAboutPage.dll" />
+  </files>
+</package>
