@@ -32,7 +32,14 @@ View aboutPage = new AboutPage(this)
 
 Grab the latest version from NuGet
 
-> PM Install-Package <...>
+> PM Install-Package AndroidAboutPage
+
+## Dependencies
+
+* Xamarin.Android.Support.v4
+* Xamarin.Android.Support.v7.AppCompat
+* Xamarin.Android.Support.Vector.Drawable
+* Xamarin.Android.Support.Animated.Vector.Drawable
 
 ## Usage
 ### 1. Add Description
