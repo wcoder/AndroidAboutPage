@@ -91,7 +91,7 @@ namespace AndroidAboutPage
 
 				if (versionCode >= 3002850)
 				{
-					Uri uri = Uri.Parse("fb://facewebmodal/f?href=" + "http://facebook.com/" + id);
+					Uri uri = Uri.Parse($"fb://facewebmodal/f?href=http://m.facebook.com/{id}");
 					intent.SetData(uri);
 				}
 				else
@@ -102,14 +102,14 @@ namespace AndroidAboutPage
 			}
 			else
 			{
-				intent.SetData(Uri.Parse("http://facebook.com/" + id));
+				intent.SetData(Uri.Parse($"http://m.facebook.com/{id}"));
 			}
 
 			Element facebookElement = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_facebook),
 				Icon = Resource.Drawable.about_icon_facebook,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.facebook_color),
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_facebook_color),
 				Intent = intent,
 				Value = id
 			};
@@ -129,21 +129,21 @@ namespace AndroidAboutPage
 			intent.SetAction(Intent.ActionView);
 			intent.AddCategory(Intent.CategoryBrowsable);
 
-			if (AboutPageUtils.IsAppInstalled(_mContext, "com.twitter.android"))
+            if (AboutPageUtils.IsAppInstalled(_mContext, "com.twitter.android"))
 			{
 				intent.SetPackage("com.twitter.android");
-				intent.SetData(Uri.Parse($"twitter://user?user_id={id}"));
-			}
+				intent.SetData(Uri.Parse($"twitter://user?screen_name={id}"));
+            }
 			else
 			{
-				intent.SetData(Uri.Parse($"http://twitter.com/{id}"));
+				intent.SetData(Uri.Parse($"http://twitter.com/intent/user?screen_name={id}"));
 			}
 
 			Element twitterElement = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_twitter),
 				Icon = Resource.Drawable.about_icon_twitter,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.twitter_color),
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_twitter_color),
 				Intent = intent,
 				Value = id
 			};
@@ -166,7 +166,7 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_play_store),
 				Icon = Resource.Drawable.about_icon_google_play,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.play_store_color),
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_play_store_color),
 				Intent = goToMarket,
 				Value = id
 			};
@@ -195,7 +195,7 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_youtube),
 				Icon = Resource.Drawable.about_icon_youtube,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.youtube_color),
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_youtube_color),
 				Intent = intent,
 				Value = id
 			};
@@ -224,7 +224,7 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_instagram),
 				Icon = Resource.Drawable.about_icon_instagram,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.instagram_color),
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_instagram_color),
 				Intent = intent,
 				Value = id
 			};
@@ -249,7 +249,7 @@ namespace AndroidAboutPage
 			{
 				Title = _mContext.GetString(Resource.String.about_github),
 				Icon = Resource.Drawable.about_icon_github,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.github_color),
+				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_github_color),
 				Intent = intent,
 				Value = id
 			};
@@ -311,11 +311,11 @@ namespace AndroidAboutPage
 			textView.Text = name;
 			if (Build.VERSION.SdkInt < BuildVersionCodes.M)
 			{
-				textView.SetTextAppearance(_mContext, Resource.Style.About_GroupTextAppearance);
+				textView.SetTextAppearance(_mContext, Resource.Style.about_groupTextAppearance);
 			}
 			else
 			{
-				textView.SetTextAppearance(Resource.Style.About_GroupTextAppearance);
+				textView.SetTextAppearance(Resource.Style.about_groupTextAppearance);
 			}
 
 			LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
@@ -414,11 +414,11 @@ namespace AndroidAboutPage
 			TextView textView = new TextView(_mContext);
 			if (Build.VERSION.SdkInt < BuildVersionCodes.M)
 			{
-				textView.SetTextAppearance(_mContext, Resource.Style.About_elementTextAppearance);
+				textView.SetTextAppearance(_mContext, Resource.Style.about_elementTextAppearance);
 			}
 			else
 			{
-				textView.SetTextAppearance(Resource.Style.About_elementTextAppearance);
+				textView.SetTextAppearance(Resource.Style.about_elementTextAppearance);
 			}
 
 			LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);

@@ -268,10 +268,16 @@ namespace AboutPageSamples
 			global::AndroidAboutPage.Resource.Color.abc_secondary_text_material_dark = global::AboutPageSamples.Resource.Color.abc_secondary_text_material_dark;
 			global::AndroidAboutPage.Resource.Color.abc_secondary_text_material_light = global::AboutPageSamples.Resource.Color.abc_secondary_text_material_light;
 			global::AndroidAboutPage.Resource.Color.about_description_color = global::AboutPageSamples.Resource.Color.about_description_color;
+			global::AndroidAboutPage.Resource.Color.about_facebook_color = global::AboutPageSamples.Resource.Color.about_facebook_color;
+			global::AndroidAboutPage.Resource.Color.about_github_color = global::AboutPageSamples.Resource.Color.about_github_color;
+			global::AndroidAboutPage.Resource.Color.about_instagram_color = global::AboutPageSamples.Resource.Color.about_instagram_color;
 			global::AndroidAboutPage.Resource.Color.about_item_icon_color = global::AboutPageSamples.Resource.Color.about_item_icon_color;
 			global::AndroidAboutPage.Resource.Color.about_item_text_color = global::AboutPageSamples.Resource.Color.about_item_text_color;
+			global::AndroidAboutPage.Resource.Color.about_play_store_color = global::AboutPageSamples.Resource.Color.about_play_store_color;
 			global::AndroidAboutPage.Resource.Color.about_separator_color = global::AboutPageSamples.Resource.Color.about_separator_color;
 			global::AndroidAboutPage.Resource.Color.about_text_color = global::AboutPageSamples.Resource.Color.about_text_color;
+			global::AndroidAboutPage.Resource.Color.about_twitter_color = global::AboutPageSamples.Resource.Color.about_twitter_color;
+			global::AndroidAboutPage.Resource.Color.about_youtube_color = global::AboutPageSamples.Resource.Color.about_youtube_color;
 			global::AndroidAboutPage.Resource.Color.accent_material_dark = global::AboutPageSamples.Resource.Color.accent_material_dark;
 			global::AndroidAboutPage.Resource.Color.accent_material_light = global::AboutPageSamples.Resource.Color.accent_material_light;
 			global::AndroidAboutPage.Resource.Color.background_floating_material_dark = global::AboutPageSamples.Resource.Color.background_floating_material_dark;
@@ -290,15 +296,12 @@ namespace AboutPageSamples
 			global::AndroidAboutPage.Resource.Color.dim_foreground_disabled_material_light = global::AboutPageSamples.Resource.Color.dim_foreground_disabled_material_light;
 			global::AndroidAboutPage.Resource.Color.dim_foreground_material_dark = global::AboutPageSamples.Resource.Color.dim_foreground_material_dark;
 			global::AndroidAboutPage.Resource.Color.dim_foreground_material_light = global::AboutPageSamples.Resource.Color.dim_foreground_material_light;
-			global::AndroidAboutPage.Resource.Color.facebook_color = global::AboutPageSamples.Resource.Color.facebook_color;
 			global::AndroidAboutPage.Resource.Color.foreground_material_dark = global::AboutPageSamples.Resource.Color.foreground_material_dark;
 			global::AndroidAboutPage.Resource.Color.foreground_material_light = global::AboutPageSamples.Resource.Color.foreground_material_light;
-			global::AndroidAboutPage.Resource.Color.github_color = global::AboutPageSamples.Resource.Color.github_color;
 			global::AndroidAboutPage.Resource.Color.highlighted_text_material_dark = global::AboutPageSamples.Resource.Color.highlighted_text_material_dark;
 			global::AndroidAboutPage.Resource.Color.highlighted_text_material_light = global::AboutPageSamples.Resource.Color.highlighted_text_material_light;
 			global::AndroidAboutPage.Resource.Color.hint_foreground_material_dark = global::AboutPageSamples.Resource.Color.hint_foreground_material_dark;
 			global::AndroidAboutPage.Resource.Color.hint_foreground_material_light = global::AboutPageSamples.Resource.Color.hint_foreground_material_light;
-			global::AndroidAboutPage.Resource.Color.instagram_color = global::AboutPageSamples.Resource.Color.instagram_color;
 			global::AndroidAboutPage.Resource.Color.material_blue_grey_800 = global::AboutPageSamples.Resource.Color.material_blue_grey_800;
 			global::AndroidAboutPage.Resource.Color.material_blue_grey_900 = global::AboutPageSamples.Resource.Color.material_blue_grey_900;
 			global::AndroidAboutPage.Resource.Color.material_blue_grey_950 = global::AboutPageSamples.Resource.Color.material_blue_grey_950;
@@ -311,7 +314,6 @@ namespace AboutPageSamples
 			global::AndroidAboutPage.Resource.Color.material_grey_800 = global::AboutPageSamples.Resource.Color.material_grey_800;
 			global::AndroidAboutPage.Resource.Color.material_grey_850 = global::AboutPageSamples.Resource.Color.material_grey_850;
 			global::AndroidAboutPage.Resource.Color.material_grey_900 = global::AboutPageSamples.Resource.Color.material_grey_900;
-			global::AndroidAboutPage.Resource.Color.play_store_color = global::AboutPageSamples.Resource.Color.play_store_color;
 			global::AndroidAboutPage.Resource.Color.primary_dark_material_dark = global::AboutPageSamples.Resource.Color.primary_dark_material_dark;
 			global::AndroidAboutPage.Resource.Color.primary_dark_material_light = global::AboutPageSamples.Resource.Color.primary_dark_material_light;
 			global::AndroidAboutPage.Resource.Color.primary_material_dark = global::AboutPageSamples.Resource.Color.primary_material_dark;
@@ -332,8 +334,6 @@ namespace AboutPageSamples
 			global::AndroidAboutPage.Resource.Color.switch_thumb_material_light = global::AboutPageSamples.Resource.Color.switch_thumb_material_light;
 			global::AndroidAboutPage.Resource.Color.switch_thumb_normal_material_dark = global::AboutPageSamples.Resource.Color.switch_thumb_normal_material_dark;
 			global::AndroidAboutPage.Resource.Color.switch_thumb_normal_material_light = global::AboutPageSamples.Resource.Color.switch_thumb_normal_material_light;
-			global::AndroidAboutPage.Resource.Color.twitter_color = global::AboutPageSamples.Resource.Color.twitter_color;
-			global::AndroidAboutPage.Resource.Color.youtube_color = global::AboutPageSamples.Resource.Color.youtube_color;
 			global::AndroidAboutPage.Resource.Dimension.abc_action_bar_content_inset_material = global::AboutPageSamples.Resource.Dimension.abc_action_bar_content_inset_material;
 			global::AndroidAboutPage.Resource.Dimension.abc_action_bar_default_height_material = global::AboutPageSamples.Resource.Dimension.abc_action_bar_default_height_material;
 			global::AndroidAboutPage.Resource.Dimension.abc_action_bar_default_padding_end_material = global::AboutPageSamples.Resource.Dimension.abc_action_bar_default_padding_end_material;
@@ -669,14 +669,6 @@ namespace AboutPageSamples
 			global::AndroidAboutPage.Resource.String.about_website = global::AboutPageSamples.Resource.String.about_website;
 			global::AndroidAboutPage.Resource.String.about_youtube = global::AboutPageSamples.Resource.String.about_youtube;
 			global::AndroidAboutPage.Resource.String.status_bar_notification_info_overflow = global::AboutPageSamples.Resource.String.status_bar_notification_info_overflow;
-			global::AndroidAboutPage.Resource.Style.About = global::AboutPageSamples.Resource.Style.About;
-			global::AndroidAboutPage.Resource.Style.About_GroupTextAppearance = global::AboutPageSamples.Resource.Style.About_GroupTextAppearance;
-			global::AndroidAboutPage.Resource.Style.About_description = global::AboutPageSamples.Resource.Style.About_description;
-			global::AndroidAboutPage.Resource.Style.About_elementTextAppearance = global::AboutPageSamples.Resource.Style.About_elementTextAppearance;
-			global::AndroidAboutPage.Resource.Style.About_image = global::AboutPageSamples.Resource.Style.About_image;
-			global::AndroidAboutPage.Resource.Style.About_separator = global::AboutPageSamples.Resource.Style.About_separator;
-			global::AndroidAboutPage.Resource.Style.About_sub_wrapper = global::AboutPageSamples.Resource.Style.About_sub_wrapper;
-			global::AndroidAboutPage.Resource.Style.About_wrapper = global::AboutPageSamples.Resource.Style.About_wrapper;
 			global::AndroidAboutPage.Resource.Style.AlertDialog_AppCompat = global::AboutPageSamples.Resource.Style.AlertDialog_AppCompat;
 			global::AndroidAboutPage.Resource.Style.AlertDialog_AppCompat_Light = global::AboutPageSamples.Resource.Style.AlertDialog_AppCompat_Light;
 			global::AndroidAboutPage.Resource.Style.Animation_AppCompat_Dialog = global::AboutPageSamples.Resource.Style.Animation_AppCompat_Dialog;
@@ -995,6 +987,14 @@ namespace AboutPageSamples
 			global::AndroidAboutPage.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::AboutPageSamples.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
 			global::AndroidAboutPage.Resource.Style.Widget_AppCompat_Toolbar = global::AboutPageSamples.Resource.Style.Widget_AppCompat_Toolbar;
 			global::AndroidAboutPage.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::AboutPageSamples.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::AndroidAboutPage.Resource.Style.about_About = global::AboutPageSamples.Resource.Style.about_About;
+			global::AndroidAboutPage.Resource.Style.about_About_wrapper = global::AboutPageSamples.Resource.Style.about_About_wrapper;
+			global::AndroidAboutPage.Resource.Style.about_description = global::AboutPageSamples.Resource.Style.about_description;
+			global::AndroidAboutPage.Resource.Style.about_elementTextAppearance = global::AboutPageSamples.Resource.Style.about_elementTextAppearance;
+			global::AndroidAboutPage.Resource.Style.about_groupTextAppearance = global::AboutPageSamples.Resource.Style.about_groupTextAppearance;
+			global::AndroidAboutPage.Resource.Style.about_image = global::AboutPageSamples.Resource.Style.about_image;
+			global::AndroidAboutPage.Resource.Style.about_separator = global::AboutPageSamples.Resource.Style.about_separator;
+			global::AndroidAboutPage.Resource.Style.about_sub_wrapper = global::AboutPageSamples.Resource.Style.about_sub_wrapper;
 			global::AndroidAboutPage.Resource.Styleable.ActionBar = global::AboutPageSamples.Resource.Styleable.ActionBar;
 			global::AndroidAboutPage.Resource.Styleable.ActionBar_background = global::AboutPageSamples.Resource.Styleable.ActionBar_background;
 			global::AndroidAboutPage.Resource.Styleable.ActionBar_backgroundSplit = global::AboutPageSamples.Resource.Styleable.ActionBar_backgroundSplit;
@@ -2091,17 +2091,35 @@ namespace AboutPageSamples
 			// aapt resource value: 0x7f0a0041
 			public const int about_description_color = 2131361857;
 			
+			// aapt resource value: 0x7f0a003a
+			public const int about_facebook_color = 2131361850;
+			
+			// aapt resource value: 0x7f0a003f
+			public const int about_github_color = 2131361855;
+			
+			// aapt resource value: 0x7f0a003c
+			public const int about_instagram_color = 2131361852;
+			
 			// aapt resource value: 0x7f0a0040
 			public const int about_item_icon_color = 2131361856;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int about_item_text_color = 2131361859;
 			
+			// aapt resource value: 0x7f0a003d
+			public const int about_play_store_color = 2131361853;
+			
 			// aapt resource value: 0x7f0a0042
 			public const int about_separator_color = 2131361858;
 			
 			// aapt resource value: 0x7f0a0044
 			public const int about_text_color = 2131361860;
+			
+			// aapt resource value: 0x7f0a003b
+			public const int about_twitter_color = 2131361851;
+			
+			// aapt resource value: 0x7f0a003e
+			public const int about_youtube_color = 2131361854;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int accent_material_dark = 2131361796;
@@ -2166,17 +2184,11 @@ namespace AboutPageSamples
 			// aapt resource value: 0x7f0a0015
 			public const int dim_foreground_material_light = 2131361813;
 			
-			// aapt resource value: 0x7f0a003a
-			public const int facebook_color = 2131361850;
-			
 			// aapt resource value: 0x7f0a0016
 			public const int foreground_material_dark = 2131361814;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int foreground_material_light = 2131361815;
-			
-			// aapt resource value: 0x7f0a003f
-			public const int github_color = 2131361855;
 			
 			// aapt resource value: 0x7f0a0018
 			public const int highlighted_text_material_dark = 2131361816;
@@ -2189,9 +2201,6 @@ namespace AboutPageSamples
 			
 			// aapt resource value: 0x7f0a001b
 			public const int hint_foreground_material_light = 2131361819;
-			
-			// aapt resource value: 0x7f0a003c
-			public const int instagram_color = 2131361852;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int material_blue_grey_800 = 2131361820;
@@ -2228,9 +2237,6 @@ namespace AboutPageSamples
 			
 			// aapt resource value: 0x7f0a0027
 			public const int material_grey_900 = 2131361831;
-			
-			// aapt resource value: 0x7f0a003d
-			public const int play_store_color = 2131361853;
 			
 			// aapt resource value: 0x7f0a0028
 			public const int primary_dark_material_dark = 2131361832;
@@ -2291,12 +2297,6 @@ namespace AboutPageSamples
 			
 			// aapt resource value: 0x7f0a0039
 			public const int switch_thumb_normal_material_light = 2131361849;
-			
-			// aapt resource value: 0x7f0a003b
-			public const int twitter_color = 2131361851;
-			
-			// aapt resource value: 0x7f0a003e
-			public const int youtube_color = 2131361854;
 			
 			static Color()
 			{
@@ -3412,30 +3412,6 @@ namespace AboutPageSamples
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f08013e
-			public const int About = 2131231038;
-			
-			// aapt resource value: 0x7f080145
-			public const int About_GroupTextAppearance = 2131231045;
-			
-			// aapt resource value: 0x7f080142
-			public const int About_description = 2131231042;
-			
-			// aapt resource value: 0x7f080144
-			public const int About_elementTextAppearance = 2131231044;
-			
-			// aapt resource value: 0x7f080141
-			public const int About_image = 2131231041;
-			
-			// aapt resource value: 0x7f080143
-			public const int About_separator = 2131231043;
-			
-			// aapt resource value: 0x7f080140
-			public const int About_sub_wrapper = 2131231040;
-			
-			// aapt resource value: 0x7f08013f
-			public const int About_wrapper = 2131231039;
-			
 			// aapt resource value: 0x7f080086
 			public const int AlertDialog_AppCompat = 2131230854;
 			
@@ -4392,6 +4368,30 @@ namespace AboutPageSamples
 			
 			// aapt resource value: 0x7f08013d
 			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131231037;
+			
+			// aapt resource value: 0x7f08013e
+			public const int about_About = 2131231038;
+			
+			// aapt resource value: 0x7f08013f
+			public const int about_About_wrapper = 2131231039;
+			
+			// aapt resource value: 0x7f080142
+			public const int about_description = 2131231042;
+			
+			// aapt resource value: 0x7f080144
+			public const int about_elementTextAppearance = 2131231044;
+			
+			// aapt resource value: 0x7f080145
+			public const int about_groupTextAppearance = 2131231045;
+			
+			// aapt resource value: 0x7f080141
+			public const int about_image = 2131231041;
+			
+			// aapt resource value: 0x7f080143
+			public const int about_separator = 2131231043;
+			
+			// aapt resource value: 0x7f080140
+			public const int about_sub_wrapper = 2131231040;
 			
 			static Style()
 			{

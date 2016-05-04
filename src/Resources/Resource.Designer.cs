@@ -792,17 +792,35 @@ namespace AndroidAboutPage
 			// aapt resource value: 0x7f0a0041
 			public static int about_description_color = 2131361857;
 			
+			// aapt resource value: 0x7f0a003a
+			public static int about_facebook_color = 2131361850;
+			
+			// aapt resource value: 0x7f0a003f
+			public static int about_github_color = 2131361855;
+			
+			// aapt resource value: 0x7f0a003c
+			public static int about_instagram_color = 2131361852;
+			
 			// aapt resource value: 0x7f0a0040
 			public static int about_item_icon_color = 2131361856;
 			
 			// aapt resource value: 0x7f0a0043
 			public static int about_item_text_color = 2131361859;
 			
+			// aapt resource value: 0x7f0a003d
+			public static int about_play_store_color = 2131361853;
+			
 			// aapt resource value: 0x7f0a0042
 			public static int about_separator_color = 2131361858;
 			
 			// aapt resource value: 0x7f0a0044
 			public static int about_text_color = 2131361860;
+			
+			// aapt resource value: 0x7f0a003b
+			public static int about_twitter_color = 2131361851;
+			
+			// aapt resource value: 0x7f0a003e
+			public static int about_youtube_color = 2131361854;
 			
 			// aapt resource value: 0x7f0a0004
 			public static int accent_material_dark = 2131361796;
@@ -858,17 +876,11 @@ namespace AndroidAboutPage
 			// aapt resource value: 0x7f0a0015
 			public static int dim_foreground_material_light = 2131361813;
 			
-			// aapt resource value: 0x7f0a003a
-			public static int facebook_color = 2131361850;
-			
 			// aapt resource value: 0x7f0a0016
 			public static int foreground_material_dark = 2131361814;
 			
 			// aapt resource value: 0x7f0a0017
 			public static int foreground_material_light = 2131361815;
-			
-			// aapt resource value: 0x7f0a003f
-			public static int github_color = 2131361855;
 			
 			// aapt resource value: 0x7f0a0018
 			public static int highlighted_text_material_dark = 2131361816;
@@ -881,9 +893,6 @@ namespace AndroidAboutPage
 			
 			// aapt resource value: 0x7f0a001b
 			public static int hint_foreground_material_light = 2131361819;
-			
-			// aapt resource value: 0x7f0a003c
-			public static int instagram_color = 2131361852;
 			
 			// aapt resource value: 0x7f0a001c
 			public static int material_blue_grey_800 = 2131361820;
@@ -920,9 +929,6 @@ namespace AndroidAboutPage
 			
 			// aapt resource value: 0x7f0a0027
 			public static int material_grey_900 = 2131361831;
-			
-			// aapt resource value: 0x7f0a003d
-			public static int play_store_color = 2131361853;
 			
 			// aapt resource value: 0x7f0a0028
 			public static int primary_dark_material_dark = 2131361832;
@@ -983,12 +989,6 @@ namespace AndroidAboutPage
 			
 			// aapt resource value: 0x7f0a0039
 			public static int switch_thumb_normal_material_light = 2131361849;
-			
-			// aapt resource value: 0x7f0a003b
-			public static int twitter_color = 2131361851;
-			
-			// aapt resource value: 0x7f0a003e
-			public static int youtube_color = 2131361854;
 			
 			static Color()
 			{
@@ -2086,30 +2086,6 @@ namespace AndroidAboutPage
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f08013e
-			public static int About = 2131231038;
-			
-			// aapt resource value: 0x7f080145
-			public static int About_GroupTextAppearance = 2131231045;
-			
-			// aapt resource value: 0x7f080142
-			public static int About_description = 2131231042;
-			
-			// aapt resource value: 0x7f080144
-			public static int About_elementTextAppearance = 2131231044;
-			
-			// aapt resource value: 0x7f080141
-			public static int About_image = 2131231041;
-			
-			// aapt resource value: 0x7f080143
-			public static int About_separator = 2131231043;
-			
-			// aapt resource value: 0x7f080140
-			public static int About_sub_wrapper = 2131231040;
-			
-			// aapt resource value: 0x7f08013f
-			public static int About_wrapper = 2131231039;
-			
 			// aapt resource value: 0x7f080086
 			public static int AlertDialog_AppCompat = 2131230854;
 			
@@ -3063,6 +3039,30 @@ namespace AndroidAboutPage
 			
 			// aapt resource value: 0x7f08013d
 			public static int Widget_AppCompat_Toolbar_Button_Navigation = 2131231037;
+			
+			// aapt resource value: 0x7f08013e
+			public static int about_About = 2131231038;
+			
+			// aapt resource value: 0x7f08013f
+			public static int about_About_wrapper = 2131231039;
+			
+			// aapt resource value: 0x7f080142
+			public static int about_description = 2131231042;
+			
+			// aapt resource value: 0x7f080144
+			public static int about_elementTextAppearance = 2131231044;
+			
+			// aapt resource value: 0x7f080145
+			public static int about_groupTextAppearance = 2131231045;
+			
+			// aapt resource value: 0x7f080141
+			public static int about_image = 2131231041;
+			
+			// aapt resource value: 0x7f080143
+			public static int about_separator = 2131231043;
+			
+			// aapt resource value: 0x7f080140
+			public static int about_sub_wrapper = 2131231040;
 			
 			static Style()
 			{
