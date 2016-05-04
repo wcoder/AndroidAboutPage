@@ -1,4 +1,4 @@
-# AndroidAboutPage ![version](http://img.shields.io/badge/original-v1.0.5-brightgreen.svg?style=flat) [![NuGet](https://img.shields.io/nuget/v/AndroidAboutPage.svg?label=NuGet)](https://www.nuget.org/packages/AndroidAboutPage/)
+# AndroidAboutPage ![version](http://img.shields.io/badge/original-v1.0.6-brightgreen.svg?style=flat) [![NuGet](https://img.shields.io/nuget/v/AndroidAboutPage.svg?label=NuGet)](https://www.nuget.org/packages/AndroidAboutPage/)
 
 Port of [android-about-page](https://github.com/medyo/android-about-page) for Xamarin.Android
 
