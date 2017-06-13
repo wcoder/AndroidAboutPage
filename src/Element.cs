@@ -1,4 +1,6 @@
+using System;
 using Android.Content;
+using Android.Views;
 
 namespace AndroidAboutPage
 {
@@ -14,8 +16,9 @@ namespace AndroidAboutPage
 		public int IconNightTint { get; set; }
 		public string Value { get; set; }
 		public Intent Intent { get; set; }
-		public int Gravity { get; set; }
+		public GravityFlags Gravity { get; set; } = GravityFlags.NoGravity;
 		public bool AutoApplyIconTint { get; set; } = true;
+		public EventHandler ClickHandler { get; set; }
 
 		public Element()
 		{

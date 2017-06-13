@@ -5,19 +5,20 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Content;
 using Android.Content.PM;
-using Android.Graphics.Drawables;
 using Android.Support.Graphics.Drawable;
 using Android.Support.V4.Content;
 using Android.Support.V4.Graphics.Drawable;
+using Android.Support.V4.Widget;
 using Android.Util;
 using Orientation = Android.Widget.Orientation;
 using Uri = Android.Net.Uri;
+using Android.Content.Res;
 
 namespace AndroidAboutPage
 {
 	/**
 	 * Created original by medyo on 3/25/16.
-	 * Ported to Xamarin by Yauheni Pakala on 5/1/16.
+	 * Ported to Xamarin by Yauheni Pakala on 6/14/17.
 	 */
 	public class AboutPage
 	{
@@ -25,10 +26,15 @@ namespace AndroidAboutPage
 		private readonly LayoutInflater _mInflater;
 		private string _mDescription;
 		private int _mImage;
-		private bool _mIsRTL;
+		private bool _mIsRtl;
 		private Typeface _mCustomFont;
 		private readonly View _mView;
 
+		/// <summary>
+		/// The AboutPage requires a context to perform it's functions. Give it a context associated to an
+		/// Activity or a Fragment. To avoid memory leaks, don't pass a Context here. 
+		/// </summary>
+		/// <param name="context"></param>
 		public AboutPage(Context context)
 		{
 			_mContext = context;
@@ -36,6 +42,11 @@ namespace AndroidAboutPage
 			_mView = _mInflater.Inflate(Resource.Layout.about_page, null);
 		}
 
+		/// <summary>
+		/// Provide a valid path to a font here to use another font for the text inside this AboutPage
+		/// </summary>
+		/// <param name="fontName"></param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage SetCustomFont(string fontName)
 		{
 			_mCustomFont = Typeface.CreateFromAsset(_mContext.Assets, fontName);
@@ -43,36 +54,62 @@ namespace AndroidAboutPage
 		}
 
 		/// <summary>
-		/// Add Email Element
+		/// Convenience method for AddEmail(string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="email"></param>
-		/// <returns></returns>
+		/// <param name="email">the email address to send to</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddEmail(string email)
+		{
+			return AddEmail(email, _mContext.GetString(Resource.String.about_contact_us));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that opens the users default email client with a new email to the
+		/// email address passed as parameter
+		/// </summary>
+		/// <param name="email">the email address to send to</param>
+		/// <param name="title">the title string to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddEmail(string email, string title)
 		{
 			var intent = new Intent(Intent.ActionSend);
 			intent.SetType("message/rfc822");
 			intent.PutExtra(Intent.ExtraEmail, new[] { email });
 
-			var emailElement = new Element
+			var element = new Element
 			{
-				Title = _mContext.GetString(Resource.String.about_contact_us),
-				Icon = Resource.Drawable.about_icon_email,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color),
+				Title = title,
+				IconDrawable = Resource.Drawable.about_icon_email,
+				IconTint = Resource.Color.about_item_icon_color,
 				Intent = intent
 			};
 
-			AddItem(emailElement);
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add Facebook Element
+		/// Convenience method for AddFacebook(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">the facebook id to display</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddFacebook(string id)
 		{
-			Intent intent = new Intent();
+			return AddFacebook(id, _mContext.GetString(Resource.String.about_facebook));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that the opens Facebook app with a deep link to the specified user id
+		/// If the Facebook application is not installed this will open a web page instead.
+		/// </summary>
+		/// <param name="id">the id of the Facebook user to display in the Facebook app</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddFacebook(string id, string title)
+		{
+			var intent = new Intent();
 			intent.SetAction(Intent.ActionView);
 			intent.AddCategory(Intent.CategoryBrowsable);
 
@@ -91,12 +128,12 @@ namespace AndroidAboutPage
 
 				if (versionCode >= 3002850)
 				{
-					Uri uri = Uri.Parse($"fb://facewebmodal/f?href=http://m.facebook.com/{id}");
+					var uri = Uri.Parse($"fb://facewebmodal/f?href=http://m.facebook.com/{id}");
 					intent.SetData(uri);
 				}
 				else
 				{
-					Uri uri = Uri.Parse("fb://page/" + id);
+					var uri = Uri.Parse($"fb://page/{id}");
 					intent.SetData(uri);
 				}
 			}
@@ -105,84 +142,124 @@ namespace AndroidAboutPage
 				intent.SetData(Uri.Parse($"http://m.facebook.com/{id}"));
 			}
 
-			Element facebookElement = new Element
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_facebook),
-				Icon = Resource.Drawable.about_icon_facebook,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_facebook_color),
+				IconDrawable = Resource.Drawable.about_icon_facebook,
+				IconTint = Resource.Color.about_facebook_color,
 				Intent = intent,
 				Value = id
 			};
 
-			AddItem(facebookElement);
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add Twitter Element
+		/// Convenience method for AddTwitter(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">the Twitter id to display</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddTwitter(string id)
 		{
-			Intent intent = new Intent();
+			return AddTwitter(id, _mContext.GetString(Resource.String.about_twitter));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that the opens the Twitter app with a deep link to the specified user id
+		/// If the Twitter application is not installed this will open a web page instead.
+		/// </summary>
+		/// <param name="id">the id of the Twitter user to display in the Twitter app</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddTwitter(string id, string title)
+		{
+			var intent = new Intent();
 			intent.SetAction(Intent.ActionView);
 			intent.AddCategory(Intent.CategoryBrowsable);
 
-            if (AboutPageUtils.IsAppInstalled(_mContext, "com.twitter.android"))
+			if (AboutPageUtils.IsAppInstalled(_mContext, "com.twitter.android"))
 			{
 				intent.SetPackage("com.twitter.android");
 				intent.SetData(Uri.Parse($"twitter://user?screen_name={id}"));
-            }
+			}
 			else
 			{
 				intent.SetData(Uri.Parse($"http://twitter.com/intent/user?screen_name={id}"));
 			}
 
-			Element twitterElement = new Element
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_twitter),
-				Icon = Resource.Drawable.about_icon_twitter,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_twitter_color),
+				IconDrawable = Resource.Drawable.about_icon_twitter,
+				IconTint = Resource.Color.about_twitter_color,
 				Intent = intent,
 				Value = id
 			};
-			
-			AddItem(twitterElement);
+
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add Play store Element
+		/// Convenience method for AddPlayStore(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">the package id of the app to display</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddPlayStore(string id)
 		{
-			Uri uri = Uri.Parse("market://details?id=" + id);
-			Intent goToMarket = new Intent(Intent.ActionView, uri);
+			return AddPlayStore(id, _mContext.GetString(Resource.String.about_play_store));
+		}
 
-			Element playStoreElement = new Element
+		/// <summary>
+		/// Add a predefined Element that the opens the PlayStore app with a deep link to the
+		/// specified app application id.
+		/// </summary>
+		/// <param name="id">the package id of the app to display</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddPlayStore(string id, string title)
+		{
+			var uri = Uri.Parse("market://details?id=" + id);
+			var intent = new Intent(Intent.ActionView, uri);
+
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_play_store),
-				Icon = Resource.Drawable.about_icon_google_play,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_play_store_color),
-				Intent = goToMarket,
+				IconDrawable = Resource.Drawable.about_icon_google_play,
+				IconTint = Resource.Color.about_play_store_color,
+				Intent = intent,
 				Value = id
 			};
 
-			AddItem(playStoreElement);
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add Youtube Element
+		/// Convenience method for AddYoutube(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">the id of the channel to deep link to</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddYoutube(string id)
 		{
-			Intent intent = new Intent();
+			return AddYoutube(id, _mContext.GetString(Resource.String.about_youtube));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that the opens the Youtube app with a deep link to the
+		/// specified channel id.
+		/// If the Youtube app is not installed this will open the Youtube web page instead.
+		/// </summary>
+		/// <param name="id">the id of the channel to deep link to</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddYoutube(string id, string title)
+		{
+			var intent = new Intent();
 			intent.SetAction(Intent.ActionView);
 			intent.SetData(Uri.Parse($"http://youtube.com/channel/{id}"));
 
@@ -191,27 +268,41 @@ namespace AndroidAboutPage
 				intent.SetPackage("com.google.android.youtube");
 			}
 
-			Element youtubeElement = new Element
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_youtube),
-				Icon = Resource.Drawable.about_icon_youtube,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_youtube_color),
+				IconDrawable = Resource.Drawable.about_icon_youtube,
+				IconTint = Resource.Color.about_youtube_color,
 				Intent = intent,
 				Value = id
 			};
 
-			AddItem(youtubeElement);
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add Instagram Element
+		/// Convenience method for AddInstagram(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">the id of the instagram user to deep link to</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddInstagram(string id)
 		{
-			Intent intent = new Intent();
+			return AddInstagram(id, _mContext.GetString(Resource.String.about_instagram));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that the opens the Instagram app with a deep link to the
+		/// specified user id.
+		/// If the Instagram app is not installed this will open the Intagram web page instead.
+		/// </summary>
+		/// <param name="id">the user id to deep link to</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddInstagram(string id, string title)
+		{
+			var intent = new Intent();
 			intent.SetAction(Intent.ActionView);
 			intent.SetData(Uri.Parse("http://instagram.com/_u/" + id));
 
@@ -220,72 +311,103 @@ namespace AndroidAboutPage
 				intent.SetPackage("com.instagram.android");
 			}
 
-			Element instagramElement = new Element
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_instagram),
-				Icon = Resource.Drawable.about_icon_instagram,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_instagram_color),
+				IconDrawable = Resource.Drawable.about_icon_instagram,
+				IconTint = Resource.Color.about_instagram_color,
 				Intent = intent,
 				Value = id
 			};
 
-			AddItem(instagramElement);
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add GitHub Element
+		/// Convenience method for AddGitHub(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">the id of the GitHub user to display</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddGitHub(string id)
 		{
-			Intent intent = new Intent();
+			return AddGitHub(id, _mContext.GetString(Resource.String.about_github));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that the opens the a browser and displays the specified GitHub
+		/// users profile page.
+		/// </summary>
+		/// <param name="id">the GitHub user to link to</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddGitHub(string id, string title)
+		{
+			var intent = new Intent();
 			intent.SetAction(Intent.ActionView);
 			intent.AddCategory(Intent.CategoryBrowsable);
 			intent.SetData(Uri.Parse($"https://github.com/{id}"));
 
-			Element gitHubElement = new Element
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_github),
-				Icon = Resource.Drawable.about_icon_github,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_github_color),
+				IconDrawable = Resource.Drawable.about_icon_github,
+				IconTint = Resource.Color.about_github_color,
 				Intent = intent,
 				Value = id
 			};
 
-			AddItem(gitHubElement);
+			AddItem(element);
 			return this;
 		}
 
 		/// <summary>
-		/// Add Website Element
+		/// Convenience method for AddWebsite(string, string) but with
+		/// a predefined title string
 		/// </summary>
-		/// <param name="url"></param>
-		/// <returns></returns>
+		/// <param name="url">the URL to open in a browser</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddWebsite(string url)
 		{
-			if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+			return AddWebsite(url, _mContext.GetString(Resource.String.about_website));
+		}
+
+		/// <summary>
+		/// Add a predefined Element that the opens a browser and loads the specified URL
+		/// </summary>
+		/// <param name="url">the URL to open in a browser</param>
+		/// <param name="title">the title to display on this item</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage AddWebsite(string url, string title)
+		{
+			if (!url.StartsWith("http://")
+				&& !url.StartsWith("https://"))
 			{
 				url = "http://" + url;
 			}
 
-			Uri uri = Uri.Parse(url);
-			Intent browserIntent = new Intent(Intent.ActionView, uri);
+			var uri = Uri.Parse(url);
+			var browserIntent = new Intent(Intent.ActionView, uri);
 
-			Element websiteElement = new Element
+			var element = new Element
 			{
 				Title = _mContext.GetString(Resource.String.about_website),
-				Icon = Resource.Drawable.about_icon_link,
-				Color = ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color),
+				IconDrawable = Resource.Drawable.about_icon_link,
+				IconTint = Resource.Color.about_item_icon_color,
 				Intent = browserIntent,
 				Value = url
 			};
 
-			AddItem(websiteElement);
+			AddItem(element);
 			return this;
 		}
 
+		/// <summary>
+		/// Add a custom Element to this AboutPage
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddItem(Element element)
 		{
 			var wrapper = (LinearLayout)_mView.FindViewById(Resource.Id.about_providers);
@@ -298,27 +420,29 @@ namespace AndroidAboutPage
 			return this;
 		}
 
+		/// <summary>
+		/// Set the header image to display in this AboutPage
+		/// </summary>
+		/// <param name="resource">the resource id of the image to display</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage SetImage(int resource)
 		{
 			_mImage = resource;
 			return this;
 		}
 
+		/// <summary>
+		/// Add a new group that will display a header in this AboutPage
+		/// A header will be displayed in the order it was added.
+		/// </summary>
+		/// <param name="name">the title for this group</param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
 		public AboutPage AddGroup(string name)
 		{
-
-			TextView textView = new TextView(_mContext);
+			var textView = new TextView(_mContext);
 			textView.Text = name;
-			if (Build.VERSION.SdkInt < BuildVersionCodes.M)
-			{
-				textView.SetTextAppearance(_mContext, Resource.Style.about_groupTextAppearance);
-			}
-			else
-			{
-				textView.SetTextAppearance(Resource.Style.about_groupTextAppearance);
-			}
-
-			LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+			TextViewCompat.SetTextAppearance(textView, Resource.Style.about_groupTextAppearance);
+			var textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
 
 			if (_mCustomFont != null)
 			{
@@ -328,7 +452,7 @@ namespace AndroidAboutPage
 			int padding = _mContext.Resources.GetDimensionPixelSize(Resource.Dimension.about_group_text_padding);
 			textView.SetPadding(padding, padding, padding, padding);
 
-			if (_mIsRTL)
+			if (_mIsRtl)
 			{
 				textView.Gravity = GravityFlags.Right | GravityFlags.CenterVertical;
 				textParams.Gravity = GravityFlags.Right | GravityFlags.CenterVertical;
@@ -344,9 +468,14 @@ namespace AndroidAboutPage
 			return this;
 		}
 
-		public AboutPage IsRTL(bool value)
+		/// <summary>
+		/// Turn on the RTL mode.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns>AboutPage instance for builder pattern support</returns>
+		public AboutPage IsRtl(bool value)
 		{
-			_mIsRTL = value;
+			_mIsRtl = value;
 			return this;
 		}
 
@@ -356,10 +485,15 @@ namespace AndroidAboutPage
 			return this;
 		}
 
+		/// <summary>
+		/// Create and inflate this AboutPage. After this method is called the AboutPage
+		/// cannot be customized any more.
+		/// </summary>
+		/// <returns>the inflated View of this AboutPage</returns>
 		public View Create()
 		{
-			TextView description = (TextView)_mView.FindViewById(Resource.Id.description);
-			ImageView image = (ImageView)_mView.FindViewById(Resource.Id.image);
+			var description = (TextView)_mView.FindViewById(Resource.Id.description);
+			var image = (ImageView)_mView.FindViewById(Resource.Id.image);
 			if (_mImage > 0)
 			{
 				image.SetImageResource(_mImage);
@@ -380,14 +514,22 @@ namespace AndroidAboutPage
 			return _mView;
 		}
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
 		private View CreateItem(Element element)
 		{
-			LinearLayout wrapper = new LinearLayout(_mContext);
+			var wrapper = new LinearLayout(_mContext);
 			wrapper.Orientation = Orientation.Horizontal;
 			wrapper.Clickable = true;
 
-			if (element.Intent != null)
+			if (element.ClickHandler != null)
+			{
+				wrapper.Click += element.ClickHandler;
+			}
+			else if (element.Intent != null)
 			{
 				wrapper.Click += (sender, args) =>
 				{
@@ -402,26 +544,18 @@ namespace AndroidAboutPage
 				};
 			}
 
-			TypedValue outValue = new TypedValue();
+			var outValue = new TypedValue();
 			_mContext.Theme.ResolveAttribute(Android.Resource.Attribute.SelectableItemBackground, outValue, true);
 			wrapper.SetBackgroundResource(outValue.ResourceId);
 
 			int padding = _mContext.Resources.GetDimensionPixelSize(Resource.Dimension.about_text_padding);
 			wrapper.SetPadding(padding, padding, padding, padding);
-			LinearLayout.LayoutParams wrapperParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+			var wrapperParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
 			wrapper.LayoutParameters = wrapperParams;
 
-			TextView textView = new TextView(_mContext);
-			if (Build.VERSION.SdkInt < BuildVersionCodes.M)
-			{
-				textView.SetTextAppearance(_mContext, Resource.Style.about_elementTextAppearance);
-			}
-			else
-			{
-				textView.SetTextAppearance(Resource.Style.about_elementTextAppearance);
-			}
-
-			LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
+			var textView = new TextView(_mContext);
+			TextViewCompat.SetTextAppearance(textView, Resource.Style.about_elementTextAppearance);
+			var textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
 			textView.LayoutParameters = textParams;
 			if (_mCustomFont != null)
 			{
@@ -430,37 +564,54 @@ namespace AndroidAboutPage
 
 			ImageView iconView = null;
 
-			if (element.Icon != 0)
+			if (element.IconDrawable != 0)
 			{
 				iconView = new ImageView(_mContext);
 				int size = _mContext.Resources.GetDimensionPixelSize(Resource.Dimension.about_icon_size);
-				LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(size, size);
+				var iconParams = new LinearLayout.LayoutParams(size, size);
 				iconView.LayoutParameters = iconParams;
 
 				int iconPadding = _mContext.Resources.GetDimensionPixelSize(Resource.Dimension.about_icon_padding);
-				iconView.SetPadding(iconPadding,0,iconPadding,0);
+				iconView.SetPadding(iconPadding, 0, iconPadding, 0);
 
 				if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
 				{
-					var drawable = VectorDrawableCompat.Create(iconView.Resources, element.Icon, iconView.Context.Theme);
+					var drawable = VectorDrawableCompat.Create(iconView.Resources, element.IconDrawable, iconView.Context.Theme);
 					iconView.SetImageDrawable(drawable);
 				}
 				else
 				{
-					iconView.SetImageResource(element.Icon);
+					iconView.SetImageResource(element.IconDrawable);
 				}
 
-				Drawable wrappedDrawable = DrawableCompat.Wrap(iconView.Drawable);
+				var wrappedDrawable = DrawableCompat.Wrap(iconView.Drawable);
 				wrappedDrawable = wrappedDrawable.Mutate();
 
-				if (element.Color != 0)
+				if (element.AutoApplyIconTint)
 				{
-					DrawableCompat.SetTint(wrappedDrawable, element.Color);
+					// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
+					var currentNightMode = _mContext.Resources.Configuration.UiMode & UiMode.NightMask;
+					if (currentNightMode != UiMode.NightYes)
+					{
+						if (element.IconTint != 0)
+						{
+							DrawableCompat.SetTint(wrappedDrawable, ContextCompat.GetColor(_mContext, element.IconTint));
+						}
+						else
+						{
+							DrawableCompat.SetTint(wrappedDrawable, ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color));
+						}
+					}
+					else if (element.IconNightTint != 0)
+					{
+						DrawableCompat.SetTint(wrappedDrawable, ContextCompat.GetColor(_mContext, element.IconNightTint));
+					}
+					else
+					{
+						DrawableCompat.SetTint(wrappedDrawable, AboutPageUtils.GetThemeAccentColor(_mContext));
+					}
 				}
-				else
-				{
-					DrawableCompat.SetTint(wrappedDrawable, ContextCompat.GetColor(_mContext, Resource.Color.about_item_icon_color));
-				}
+				
 			}
 			else
 			{
@@ -468,26 +619,27 @@ namespace AndroidAboutPage
 				textView.SetPadding(iconPadding, iconPadding, iconPadding, iconPadding);
 			}
 
-
 			textView.Text = element.Title;
 
-
-			if (_mIsRTL)
+			if (_mIsRtl)
 			{
-				wrapper.SetGravity(GravityFlags.Right | GravityFlags.CenterVertical);
-				textParams.Gravity = GravityFlags.Right | GravityFlags.CenterVertical;
+				var gravity = element.Gravity != GravityFlags.NoGravity ? element.Gravity : GravityFlags.Right;
+
+				wrapper.SetGravity(gravity | GravityFlags.CenterVertical);
+				textParams.Gravity = gravity | GravityFlags.CenterVertical;
 				wrapper.AddView(textView);
-				if (element.Icon != 0)
+				if (element.IconDrawable != 0)
 				{
 					wrapper.AddView(iconView);
 				}
-
 			}
 			else
 			{
-				wrapper.SetGravity(GravityFlags.Left | GravityFlags.CenterVertical);
-				textParams.Gravity = GravityFlags.Left | GravityFlags.CenterVertical;
-				if (element.Icon != 0)
+				var gravity = element.Gravity != GravityFlags.NoGravity ? element.Gravity : GravityFlags.Left;
+
+				wrapper.SetGravity(gravity | GravityFlags.CenterVertical);
+				textParams.Gravity = gravity | GravityFlags.CenterVertical;
+				if (element.IconDrawable != 0)
 				{
 					wrapper.AddView(iconView);
 				}
