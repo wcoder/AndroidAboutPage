@@ -1,4 +1,4 @@
-# AndroidAboutPage ![version](http://img.shields.io/badge/original-v1.0.6-brightgreen.svg?style=flat) [![NuGet](https://img.shields.io/nuget/v/AndroidAboutPage.svg?label=NuGet)](https://www.nuget.org/packages/AndroidAboutPage/)
+# AndroidAboutPage ![version](http://img.shields.io/badge/original-v1.2.1-brightgreen.svg?style=flat) [![NuGet](https://img.shields.io/nuget/v/AndroidAboutPage.svg?label=NuGet)](https://www.nuget.org/packages/AndroidAboutPage/)
 
 Port of [android-about-page](https://github.com/medyo/android-about-page) for Xamarin.Android
 
@@ -12,13 +12,13 @@ This library allows to generate beautiful About Pages with less effort, it's ful
 
 ```csharp
 View aboutPage = new AboutPage(this)
-	.IsRTL(false)
+	.IsRtl(false)
 	.SetImage(Resource.Drawable.dummy_image)
 	.AddItem(versionElement)
 	.AddItem(adsElement)
 	.AddGroup("Connect with us")
 	.AddEmail("elmehdi.sakout@gmail.com")
-	.AddWebsite("http://medyo.github.io/")
+	.AddWebsite("http://wcoder.github.io/")
 	.AddFacebook("the.medy")
 	.AddTwitter("medyo80")
 	.AddYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
@@ -32,14 +32,11 @@ View aboutPage = new AboutPage(this)
 
 Grab the latest version from NuGet
 
-> PM Install-Package AndroidAboutPage
+> Install-Package AndroidAboutPage
 
 ## Dependencies
 
-* Xamarin.Android.Support.v4
 * Xamarin.Android.Support.v7.AppCompat
-* Xamarin.Android.Support.Vector.Drawable
-* Xamarin.Android.Support.Animated.Vector.Drawable
 
 ## Usage
 ### 1. Add Description
@@ -54,7 +51,7 @@ SetImage(int)
 ```
 
 ### 3. Add predefined Social network
-The library has already some predefined social networks like :  
+The library has already some predefined social networks like :
 
 * Facebook
 * Twitter
@@ -83,18 +80,49 @@ AddItem(versionElement)
 ### 5. Available attributes for Element Class
 
 | Function        | Description  |
-| ------------- |:-------------:| -----:|
-| string Title | Set title of the element|
-| int Color | Set color of the element|
-| int Icon | Set icon of the element|
-| string Value | Set Element value like Facebook ID|
-| string Tag | Set a unique tag value to the element|
-| Intent Intent | Set an intent to be called on `OnClick` |
+| ------------- |:------------------|
+| `string` Title | Set title of the element|
+| `int` IconTint | Set color of the element|
+| `int` IconDrawable | Set icon of the element|
+| `string` Value | Set Element value like Facebook ID|
+| `Intent` Intent | Set an intent to be called on `OnClick` |
+| `GravityFlags` Gravity | Set a unique tag value to the element|
+| `Action` ClickHandler | If `intent` isn't suitable for you need, implement your custom behaviour by overriding the click event |
 
 
 ## Sample Project
 [sample](https://github.com/wcoder/AndroidAboutPage/tree/master/samples)
 
+## Translations
+The library does supports the following languages :
+
+* English (default)
+* German (by [vanniktech](https://github.com/vanniktech))
+* Italian (by [greenaddress](https://github.com/greenaddress))
+* Croatian (by [skmlcd](https://github.com/skmlcd))
+* Arabic (by [zecharyah](https://github.com/zecharyah))
+* Slovenian (by [skmlcd](https://github.com/skmlcd))
+* Ukrainian (by [NumezmaT](https://github.com/NumezmaT))
+* Russian (by [NumezmaT](https://github.com/NumezmaT))
+* Romanian (by [Vally79](https://github.com/Vally79))
+* Portuguese Brazil (by [rbaprado](https://github.com/rbaprado))
+* French (by [medyo](https://github.com/medyo))
+* Simplified Chinese (by [whiskeyfei](https://github.com/whiskeyfei))
+* Spanish (by [danramirez](https://github.com/danramirez))
+* Japanese (by [chibatching](https://github.com/chibatching))
+* Turkish (by [tekseker](https://github.com/tekseker))
+* Catalan (by [unxavi](https://github.com/unxavi))
+* Czech (by [semanticer](https://github.com/semanticer))
+* Hungarian (by [jbarat](https://github.com/jbarat))
+* Korean (by [Alfex4936](https://github.com/Alfex4936))
+* Swedish (by [Krillsson](https://github.com/Krillsson))
+* Polish (by [karmil32](https://github.com/karmil32))
+* Persian (by [mortezasun](https://github.com/mortezasun))
+* Traditional Chinese (by [ppcrong](https://github.com/ppcrong))
+* Serbian (by [ljmocic](https://github.com/ljmocic))
+* Greek (by [jvoyatz](https://github.com/jvoyatz))
+
+Please make a Pull request to add a new language.
 
 ## License
 
